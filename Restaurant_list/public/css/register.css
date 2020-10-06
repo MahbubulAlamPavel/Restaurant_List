@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    width: auto;
+    height: 100vh;
+    background-image: url(../img/image.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    font-family: 'Numans', sans-serif;
+}
+
+.card-body {
+    height: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.text-center {
+    color: #fff!important;
+}
+
+.text-center a {
+    text-decoration: none;
+}

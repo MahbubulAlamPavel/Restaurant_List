@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-brand {
+    color: white;
+}
+
+.navbar-brand {
+    font-style: italic;
+    font-weight: bolder;
+}
+
+
+/* ***********End Navbar********* */
+
+.home {
+    width: auto;
+    height: 100vh;
+    background-image: url(../img/image.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+}
+
+.text-color {
+    color: aliceblue;
+}
+
+.text-body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ************End Body************ */
+
+.footer-copyright {
+    color: violet;
+}
