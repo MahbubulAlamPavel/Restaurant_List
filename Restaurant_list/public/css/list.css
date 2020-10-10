@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100%;
+    align-content: center;
+}
+
+.card {
+    height: auto;
+    margin-top: 80px;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.575) !important;
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+    color: lightsalmon;
+}
+
+.table thead {
+    color: rgb(236, 213, 4);
+}
+
+.table tbody {
+    color: white;
+}

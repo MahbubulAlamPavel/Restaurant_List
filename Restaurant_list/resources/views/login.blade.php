@@ -26,7 +26,7 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="/list">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Add</a>
@@ -48,19 +48,20 @@
                         <h3>Sign In</h3>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="{{URL::to('/logs')}}" method="post">
+                        @csrf
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="username">
+                                <input type="email" class="form-control" placeholder="username" name="email">
 
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="password">
+                                <input type="password" class="form-control" placeholder="password" name="password">
                             </div>
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me

@@ -26,7 +26,7 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="/list">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Add</a>
@@ -44,24 +44,25 @@
         <div class="container d-flex justify-content-center h-100">
                 <div class="card-body mx-auto" style="max-width: 400px;">
                     <h4 class="card-title mt-3 text-center">Create Account</h4>
-                    <form>
+                    <form action="{{URL::to('/store')}}" method="post">
+                        @csrf
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input name="" class="form-control" placeholder="First Name" type="text" required>
+                            <input name="fname" class="form-control" placeholder="First Name" type="text" required>
                         </div> <!-- form-group// -->
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input name="" class="form-control" placeholder="Last name" type="text" required>
+                            <input name="lname" class="form-control" placeholder="Last name" type="text" required>
                         </div> <!-- form-group// -->
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                             </div>
-                            <input name="" class="form-control" placeholder="Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" required>
+                            <input name="email" class="form-control" placeholder="Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" required>
                         </div> <!-- form-group// -->
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
@@ -73,13 +74,13 @@
                                 <option value="2">+198</option>
                                 <option value="3">+701</option>
                             </select>
-                            <input name="" class="form-control" placeholder="Phone number" type="text" required>
+                            <input name="phone" class="form-control" placeholder="Phone number" type="text" required>
                         </div>
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" placeholder="Create password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" required>
+                            <input name="password" class="form-control" placeholder="Create password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" type="password" required>
                         </div> <!-- form-group// -->
                         <div class="form-group input-group">
                             <div class="input-group-prepend">

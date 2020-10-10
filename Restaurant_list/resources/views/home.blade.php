@@ -23,7 +23,7 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="/list">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Add</a>
