@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Restaurant;
+use Session;
 
 class mainController extends Controller
 {
@@ -25,12 +26,13 @@ class mainController extends Controller
     }
     public function new(Request $request)
     {
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $address = $request->input('address');
-        DB::insert('insert into restaurants (id,name,email,address) values (?,?,?,?)', [null, $name, $email, $address]);
-         $request->Session()->flash('status','Successfully submitted');
-         return redirect('/list');
+        $restaurant=new Restaurant; 
+        $restaurant->name=$request->input('name'); 
+        $restaurant->email=$request->input('email'); 
+        $restaurant->address=$request->input('address'); 
+        $restaurant->save(); 
+        // $req->Session()->flash('status','Successfully Inserted'); 
+        return redirect('/list');
     }
     public function search()
     {
@@ -70,5 +72,27 @@ class mainController extends Controller
              }else{
                  return view('login');
              }
-            }       
-        }
+            } 
+            
+    public function delete(Request $request)
+    {
+        $delete = Restaurant::find($request->input('id')); 
+        $delete->delete(); 
+        return redirect('/list');
+    }
+    public function edit()
+    {
+        // $data = Restaurant::find($id);
+        return view('edit');
+    }
+    public function update(Request $request)
+    {
+        $restaurant=Restaurant::find($request->input('id')); 
+        $restaurant->name=$request->input('name'); 
+        $restaurant->email=$request->input('email'); 
+        $restaurant->address=$request->input('address'); 
+        $restaurant->save(); 
+        // $req->Session()->flash('status','Successfully Inserted'); 
+        return redirect('/list');
+    }
+}

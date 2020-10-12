@@ -18,7 +18,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('address');
-            $table->timestamps=false;
+            $table->timestamps();
         });
     }
 
