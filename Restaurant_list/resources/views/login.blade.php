@@ -13,31 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-secondary fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Restaurant Gallery</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/list">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Add</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+@extends('layout/layout')
 
     <!-- *****************************Navbar part end*************************** -->
     <section class="body">
@@ -49,19 +25,23 @@
                     </div>
                     <div class="card-body">
                         <form action="{{URL::to('/logs')}}" method="post">
-                        @csrf
+                            {{ csrf_field()}}
+                            @if($message= Session::get('wrong'))
+                            <div class="alert-danger text-center">
+                                <p>{{$message}}</p>
+                            </div> @endif
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="email" class="form-control" placeholder="username" name="email">
+                                <input type="email" class="form-control" placeholder="username" name="email" required>
 
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="password" name="password">
+                                <input type="password" class="form-control" placeholder="password" name="password" required>
                             </div>
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me

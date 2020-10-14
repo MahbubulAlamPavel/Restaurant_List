@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Restaurant;
 use Session;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class mainController extends Controller
 {
@@ -32,7 +35,7 @@ class mainController extends Controller
         $restaurant->address=$request->input('address'); 
         $restaurant->save(); 
         // $req->Session()->flash('status','Successfully Inserted'); 
-        return redirect('/list');
+        return redirect('/list')->with('success','Data Added Successfully');
     }
     public function search()
     {
@@ -44,41 +47,38 @@ class mainController extends Controller
     }
     public function store(Request $request)
     {
-        $fname = $request->input('fname');
-        $lname = $request->input('lname');
-        $email = $request->input('email');
-        $phone = $request->input('phone');
-        $password = Hash::make($request->input('password'));
-        $data =  DB::insert('insert into people (id,fname,lname,email,phone,password) values (?,?,?,?,?,?)', [null, $fname,$lname, $email, $phone, $password]);
-
-        if($data){
-            return view('login');
-        }else{
-            return view('registration');
-        }
+        $user = new User;
+        $user->fname = $request->input('fname');
+        $user->lname = $request->input('lname');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->password = Crypt::encrypt($request->input('password'));
+        $user->save();
+        return redirect('/login');
     }
     public function login()
     {
         return view('login');
     }
-    function logs(Request $request){
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $data = DB::select('select id from people where email=? and password=?', [$email,$password]);
+    function logs(Request $request)
+    {
+        $user = User::where("email",$request->input('email'))->get();
+        if(Crypt::decrypt($user[0]->password)==$request->input('password'))
+        {
+            $request->session()->put('user',$user[0]->fname);
+
+            return redirect('/list');
+        }else{
+            return redirect('/login')->with('wrong','Wrong Email/Password');
+        }
         
-            if(count($data)){
-                return (DB::table('people')->get());
-             }else{
-                 return view('login');
-             }
-            } 
+    } 
             
     public function delete(Request $request)
     {
         $delete = Restaurant::find($request->input('id')); 
         $delete->delete(); 
-        return redirect('/list');
+        return redirect('/list')->with('success','Data Delete Successfully');
     }
     public function edit()
     {
@@ -93,6 +93,6 @@ class mainController extends Controller
         $restaurant->address=$request->input('address'); 
         $restaurant->save(); 
         // $req->Session()->flash('status','Successfully Inserted'); 
-        return redirect('/list');
+        return redirect('/list')->with('success','Data updated Successfully');
     }
 }

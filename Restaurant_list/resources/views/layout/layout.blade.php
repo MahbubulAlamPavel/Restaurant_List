@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-    <title>Home Page</title>
-</head>
-
-<body class="body">
     <nav class="navbar navbar-expand-sm navbar-light bg-secondary fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Restaurant Gallery</a>
@@ -23,23 +12,26 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="/list">Dashboard</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#at-Add" href="#">Add</a>
+                    </li>
+                    @if(Session::get('user'))
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="">Welcome {{Session::get('user')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add</a>
+                        <a class="nav-link"  href="/">Logout</a>
                     </li>
+                    @else
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- *****************************Navbar part end*************************** -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+   
