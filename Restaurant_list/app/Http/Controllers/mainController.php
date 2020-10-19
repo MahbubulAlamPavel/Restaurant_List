@@ -60,6 +60,12 @@ class mainController extends Controller
     {
         return view('login');
     }
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        Auth::logout();
+        return redirect('/login');
+    }
     function logs(Request $request)
     {
         $user = User::where("email",$request->input('email'))->get();
